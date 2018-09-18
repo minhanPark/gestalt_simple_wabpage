@@ -6,7 +6,39 @@ import SmallImage from './smallImage';
 import LongImage from './longImage';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      animals:{
+        "1":{
+          alt:"cat",
+          src:images.cat
+        },
+        "2":{
+          alt:"brownDog",
+          src:images.brownDog
+        },
+        "3":{
+          alt:"lonelyDog",
+          src:images.lonelyDog
+        },
+        "4":{
+          alt:"duck",
+          src:images.duck
+        },
+        "5":{
+          alt:"threeCat",
+          src:images.threeCat
+        },
+        "6":{
+          alt:"smallDog",
+          src:images.smallDog
+        }
+      }
+    }
+  }
   render() {
+    const { animals } = this.state;
     return (
       <Box
          column={12}
@@ -43,30 +75,11 @@ class App extends Component {
                  wrap={true}
                  justifyContent="around"
                  >
-                <SmallImage
-                  alt={"cat"}
-                  src={images.cat}
-                 />
-                <SmallImage
-                  alt={"brownDog"}
-                  src={images.brownDog}
-                 />
-                <SmallImage
-                  alt={"lonelyDog"}
-                  src={images.lonelyDog}
-                 />
-                <SmallImage
-                  alt={"duck"}
-                  src={images.duck}
-                 />
-                <SmallImage
-                  alt={"threeCat"}
-                  src={images.threeCat}
-                 />
-                <SmallImage
-                  alt={"smallDog"}
-                  src={images.smallDog}
-                 />
+               {
+                 Object.keys(animals).map(key => {
+                   return <SmallImage alt={animals[key].alt} src={animals[key].src} />
+                 })
+               }
               </Box>
               <Box
                column={12}
